@@ -1,30 +1,35 @@
+/**
+ *
+ * Footer
+ *
+ */
+
 import React from 'react';
-import { FormattedMessage } from 'react-intl';
+import { Card } from 'react-bootstrap';
+import styled from 'styled-components';
 
-import A from 'components/A';
-import LocaleToggle from 'containers/LocaleToggle';
-import Wrapper from './Wrapper';
-import messages from './messages';
+import FilterLink from '../../containers/FilterLink';
+import { VisibilityFilters } from '../../containers/FilterLink/constants';
 
-function Footer() {
-  return (
-    <Wrapper>
-      <section>
-        <FormattedMessage {...messages.licenseMessage} />
-      </section>
-      <section>
-        <LocaleToggle />
-      </section>
-      <section>
-        <FormattedMessage
-          {...messages.authorMessage}
-          values={{
-            author: <A href="https://twitter.com/mxstbr">Max Stoiber</A>,
-          }}
-        />
-      </section>
-    </Wrapper>
-  );
-}
+const FooterWrapper = styled.footer`
+  max-width: 700px;
+  width: 100%;
+  background-color: #282c34;
+  margin: 0 auto;
+`;
+const Footer = () => (
+  <FooterWrapper>
+    <Card variant="primary">
+      <Card.Body>
+        <span>Show: </span>
+        <FilterLink filter={VisibilityFilters.SHOW_ALL}>All</FilterLink>
+        <FilterLink filter={VisibilityFilters.SHOW_ACTIVE}>Active</FilterLink>
+        <FilterLink filter={VisibilityFilters.SHOW_COMPLETED}>
+          Completed
+        </FilterLink>
+      </Card.Body>
+    </Card>
+  </FooterWrapper>
+);
 
 export default Footer;
