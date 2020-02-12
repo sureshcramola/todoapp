@@ -129,21 +129,6 @@ export default {
     return data;
   },
 
-  exportDataHeaderWithFilter(data) {
-    let exportData = data.map(({ id, active, state, admin, city, country, superUser, staff, ...keepAttrs }) => keepAttrs);
-    exportData = exportData.map(data => {
-      return {
-        ...data,
-        expiryDate: this.convertUnixTimestampToDate(data.expiryDate),
-        createdDate: this.convertUnixTimestampToDate(data.createdDate)
-      }
-    })
-    // exportData.unshift({ 'firstName': 'First name', 'lastName': 'Last name', 'company': 'Company', 'email': 'Email', 'phoneNumber': 'Phone number', 'cloudImageProviders': 'Environment', 'reportingDB': 'Reporting database','createdDate': 'Registration Date', 'expiryDate': 'Expiration Date' });
-    exportData.unshift({ 'company': 'Company', 'expiryDate': 'Expiration Date', 'createdDate': 'Registration Date', 'cloudImageProviders': 'Environment', 'reportingDB': 'Reporting Database' });
-
-    return exportData;
-  },
-
   stringToBoolean(string) {
     if (string) {
       switch (string.toLowerCase().trim()) {
